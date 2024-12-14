@@ -1,12 +1,115 @@
 <!DOCTYPE html>
-<html>
-  <body>
-      <h1> Hey, I'm Nehal </h1>
-       <body>
-         <h2>About me</h2>
-         <p>I am a caffaine addict who codes games and makes music</p>
-         <h2>Softwares</h2>
-         <p>Unity, Ableton Live, Blender</p>
-         </body>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nehal's Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --accent-color: #4a4a4a;
+            --link-color: #0066cc;
+        }
+
+        [data-theme='dark'] {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #e0e0e0;
+            --link-color: #4da6ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            background-color: var(--bg-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: var(--accent-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" aria-label="Toggle Theme">🌓</button>
+    <div class="container">
+        <h1>Hey, I'm Nehal</h1>
+        
+        <h2>About me</h2>
+        <p>I am a caffeine addict who codes games and makes music</p>
+        
+        <h2>Softwares</h2>
+        <p>Unity, Ableton Live, Blender</p>
+    </div>
+
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        const htmlElement = document.documentElement;
+
+        // Check for saved theme preference or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+
+        if (savedTheme) {
+            htmlElement.setAttribute('data-theme', savedTheme);
+        } else if (systemPrefersDark.matches) {
+            htmlElement.setAttribute('data-theme', 'dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? '' : 'dark';
+            
+            htmlElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
 </html>
